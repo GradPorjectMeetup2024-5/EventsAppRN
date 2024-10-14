@@ -4,9 +4,18 @@ import { Link } from 'expo-router';
 
 import LogIn from './(auth)/log-in';
 import SignUp from './(auth)/sign-up';
+import Home from './(tabs)/home';
 
 export default function App() {
-  return <LogIn />;
+  return (
+    <View style={styles.container}>
+      <Text>MeJo!</Text>
+      <StatusBar style="auto" />
+      <Link href="/profile" style={{ color: 'blue' }}>
+        HOME
+      </Link>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

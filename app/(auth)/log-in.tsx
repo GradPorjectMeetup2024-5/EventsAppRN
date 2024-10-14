@@ -1,21 +1,10 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 const { width, height } = Dimensions.get('window');
 
-type RootStackParamList = {
-  Login: undefined;
-  SignUp: undefined;
-};
-
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
-
-const LoginPage: React.FC = () => {
-  const navigation = useNavigation<LoginScreenNavigationProp>();
-
+const LoginPage = () => {
   return (
     <View style={styles.container}>
       <View style={styles.placeholderIcon}>
@@ -33,11 +22,11 @@ const LoginPage: React.FC = () => {
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
       
-      <TouchableOpacity style={styles.switchAuth} onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity style={styles.switchAuth}>
         <Text style={styles.switchAuthText}>
-          Don't have an account? Sign Up
+          Don't have an account? <Text style={{fontWeight: 'bold'}}>Sign Up</Text>
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
       
       <TouchableOpacity style={styles.forgotPassword}>
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
