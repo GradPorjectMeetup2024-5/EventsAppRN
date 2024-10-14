@@ -11,10 +11,10 @@ type RootStackParamList = {
   SignUp: undefined;
 };
 
-type SignUpScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SignUp'>;
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
-const SignUpPage: React.FC = () => {
-  const navigation = useNavigation<SignUpScreenNavigationProp>();
+const LoginPage: React.FC = () => {
+  const navigation = useNavigation<LoginScreenNavigationProp>();
 
   return (
     <View style={styles.container}>
@@ -24,20 +24,23 @@ const SignUpPage: React.FC = () => {
         </Svg>
       </View>
       
-      <Text style={styles.title}>Create Account</Text>
+      <Text style={styles.title}>Welcome Back</Text>
       
       <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#FFFFFF" />
       <TextInput style={styles.input} placeholder="Password" placeholderTextColor="#FFFFFF" secureTextEntry />
-      <TextInput style={styles.input} placeholder="Confirm Password" placeholderTextColor="#FFFFFF" secureTextEntry />
       
       <TouchableOpacity style={styles.authButton}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+        <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
       
-      <TouchableOpacity style={styles.switchAuth} onPress={() => navigation.navigate('Login')}>
+      <TouchableOpacity style={styles.switchAuth} onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.switchAuthText}>
-          Already have an account? Log In
+          Don't have an account? Sign Up
         </Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity style={styles.forgotPassword}>
+        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
       </TouchableOpacity>
     </View>
   );
@@ -100,6 +103,15 @@ const styles = StyleSheet.create({
     fontFamily: 'WorkSans-Medium',
     fontSize: 14,
   },
+  forgotPassword: {
+    position: 'absolute',
+    bottom: 20,
+  },
+  forgotPasswordText: {
+    fontFamily: 'WorkSans-Medium',
+    fontSize: 16,
+    color: '#000000',
+  },
 });
 
-export default SignUpPage;
+export default LoginPage;
