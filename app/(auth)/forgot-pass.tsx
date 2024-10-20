@@ -5,7 +5,7 @@ import { Link } from 'expo-router'; // Import Link
 
 const { width, height } = Dimensions.get('window');
 
-const SignUpPage = () => {
+const ForgotPasswordPage = () => {
   return (
     <View style={styles.container}>
       <View style={styles.placeholderIcon}>
@@ -14,20 +14,22 @@ const SignUpPage = () => {
         </Svg>
       </View>
       
-      <Text style={styles.title}>Create Account</Text>
+      <Text style={styles.title}>Forgot Password</Text>
+      
+      <Text style={styles.instructions}>
+        Please enter your email address to receive instructions on resetting your password.
+      </Text>
       
       <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#FFFFFF" />
-      <TextInput style={styles.input} placeholder="Password" placeholderTextColor="#FFFFFF" secureTextEntry />
-      <TextInput style={styles.input} placeholder="Confirm Password" placeholderTextColor="#FFFFFF" secureTextEntry />
       
       <TouchableOpacity style={styles.authButton}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+        <Text style={styles.buttonText}>Send Instructions</Text>
       </TouchableOpacity>
       
       <TouchableOpacity style={styles.switchAuth}>
         <Link href="/(auth)/log-in">
           <Text style={styles.switchAuthText}>
-            Already have an account? <Text style={{ fontWeight: 'bold' }}>Log In</Text>
+            Remembered your password? <Text style={{ fontWeight: 'bold' }}>Log In</Text>
           </Text>
         </Link>
       </TouchableOpacity>
@@ -58,6 +60,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  instructions: {
+    fontSize: 16,
+    color: '#19191B',
+    textAlign: 'center',
+    marginBottom: 20,
+    paddingHorizontal: 20,
   },
   input: {
     width: width - 32,
@@ -94,4 +103,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpPage;
+export default ForgotPasswordPage;
+

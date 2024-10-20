@@ -5,7 +5,7 @@ import { useFonts } from 'expo-font';
 
 SplashScreen.preventAutoHideAsync();
 
-const RooyLayout = () => {
+const RootLayout = () => {
   const [fontsLoaded, error] = useFonts({
     "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
     "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
@@ -21,18 +21,15 @@ const RooyLayout = () => {
   useEffect(() => {
     if (error) throw error;
     if (fontsLoaded) SplashScreen.hideAsync();
-
-  }, [fontsLoaded, error])
+  }, [fontsLoaded, error]);
 
   if (!fontsLoaded && !error) return null;
 
-
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+    <Stack screenOptions={{ headerShown: false, animation: 'none' }}>
       <Slot />
     </Stack>
   );
 };
 
-export default RooyLayout;
+export default RootLayout;

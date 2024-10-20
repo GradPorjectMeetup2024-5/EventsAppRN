@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
+import { Link } from 'expo-router'; // Import Link
 
 const { width, height } = Dimensions.get('window');
 
@@ -19,17 +20,23 @@ const LoginPage = () => {
       <TextInput style={styles.input} placeholder="Password" placeholderTextColor="#FFFFFF" secureTextEntry />
       
       <TouchableOpacity style={styles.authButton}>
-        <Text style={styles.buttonText}>Log In</Text>
+        <Link href="/(tabs)/home">
+          <Text style={styles.buttonText}>Log In</Text>
+        </Link>
       </TouchableOpacity>
       
       <TouchableOpacity style={styles.switchAuth}>
-        <Text style={styles.switchAuthText}>
-          Don't have an account? <Text style={{fontWeight: 'bold'}}>Sign Up</Text>
-        </Text>
-        </TouchableOpacity>
+        <Link href="/(auth)/sign-up">
+          <Text style={styles.switchAuthText}>
+            Don't have an account? <Text style={{ fontWeight: 'bold' }}>Sign Up</Text>
+          </Text>
+        </Link>
+      </TouchableOpacity>
       
       <TouchableOpacity style={styles.forgotPassword}>
+      <Link href="/(auth)/forgot-pass">
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+        </Link>
       </TouchableOpacity>
     </View>
   );
