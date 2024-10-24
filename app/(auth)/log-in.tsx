@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
 import { Link } from 'expo-router'; // Import Link
+import { Redirect } from 'expo-router'; // Import Redirect
+import { useRouter } from 'expo-router'; // Import useRouter
 
 const { width, height } = Dimensions.get('window');
 
 const LoginPage = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const router = useRouter(); // Use the router from expo-router
+
+  const handleLogin = () => {
+    setIsLoggedIn(true); // Update state to indicate user is logged in
+    router.replace('/(tabs)/home'); // Replace the current route with home
+  };
+
+  if (isLoggedIn) {
+    return <Redirect href="/(tabs)/home" />; // Redirect to home if logged in
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.placeholderIcon}>
@@ -19,10 +33,8 @@ const LoginPage = () => {
       <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#FFFFFF" />
       <TextInput style={styles.input} placeholder="Password" placeholderTextColor="#FFFFFF" secureTextEntry />
       
-      <TouchableOpacity style={styles.authButton}>
-        <Link href="/(tabs)/home">
-          <Text style={styles.buttonText}>Log In</Text>
-        </Link>
+      <TouchableOpacity style={styles.authButton} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
       
       <TouchableOpacity style={styles.switchAuth}>

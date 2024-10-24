@@ -26,7 +26,7 @@ const RootLayout = () => {
   if (!fontsLoaded && !error) return null;
 
   return (
-    <Stack screenOptions={{ headerShown: false, animation: 'none' }}>
+    <Stack screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
       <Slot />
     </Stack>
   );
