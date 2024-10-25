@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    borderRadius: 40,
+    borderRadius: 0,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,

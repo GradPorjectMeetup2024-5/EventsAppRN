@@ -16,9 +16,9 @@ const LoginPage = () => {
     router.replace('/(tabs)/home'); // Replace the current route with home
   };
 
-  if (isLoggedIn) {
-    return <Redirect href="/(tabs)/home" />; // Redirect to home if logged in
-  }
+  // if (isLoggedIn) {
+  //   return <Redirect href="/(tabs)/home" />; // Redirect to home if logged in
+  // }
 
   return (
     <View style={styles.container}>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    borderRadius: 40,
+    borderRadius: 0,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,
