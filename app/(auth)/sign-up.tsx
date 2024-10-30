@@ -1,21 +1,11 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { Link } from 'expo-router'; // Import Link
 
 const { width, height } = Dimensions.get('window');
 
-type RootStackParamList = {
-  Login: undefined;
-  SignUp: undefined;
-};
-
-type SignUpScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SignUp'>;
-
-const SignUpPage: React.FC = () => {
-  const navigation = useNavigation<SignUpScreenNavigationProp>();
-
+const SignUpPage = () => {
   return (
     <View style={styles.container}>
       <View style={styles.placeholderIcon}>
@@ -34,10 +24,12 @@ const SignUpPage: React.FC = () => {
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
       
-      <TouchableOpacity style={styles.switchAuth} onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.switchAuthText}>
-          Already have an account? Log In
-        </Text>
+      <TouchableOpacity style={styles.switchAuth}>
+        <Link href="/(auth)/log-in">
+          <Text style={styles.switchAuthText}>
+            Already have an account? <Text style={{ fontWeight: 'bold' }}>Log In</Text>
+          </Text>
+        </Link>
       </TouchableOpacity>
     </View>
   );
@@ -47,7 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    borderRadius: 40,
+    borderRadius: 0,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,

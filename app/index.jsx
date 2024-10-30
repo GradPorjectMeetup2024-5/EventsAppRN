@@ -1,14 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Link } from 'expo-router';
-
-import LogIn from './(auth)/log-in';
-import SignUp from './(auth)/sign-up';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useState } from 'react';
 
 // This is the main App component
 export default function App() {
+<<<<<<< HEAD
   // The App component currently renders the LogIn component
   return <LogIn />;
+=======
+  const router = useRouter();
+  const [isReady, setIsReady] = useState(false); // State to track if the app is ready
+
+  useEffect(() => {
+    // Set the app as ready after a short delay
+    const timer = setTimeout(() => {
+      setIsReady(true);
+    }, 0); // Adjust the delay as needed
+
+    return () => clearTimeout(timer); // Cleanup the timer
+  }, []);
+
+  useEffect(() => {
+    if (isReady) {
+      // Navigate to the login screen once the app is ready
+      router.replace('/(auth)/log-in');
+    }
+  }, [isReady, router]);
+
+  return (
+    <>
+      <StatusBar />
+    </>
+  );
+>>>>>>> e29b26a59c15791155c6e781a96e70d43379faa6
 }
 
 // Styles for the App component

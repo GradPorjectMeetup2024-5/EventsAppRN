@@ -1,25 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
 import { Link } from 'expo-router'; // Import Link
-import { Redirect } from 'expo-router'; // Import Redirect
-import { useRouter } from 'expo-router'; // Import useRouter
 
 const { width, height } = Dimensions.get('window');
 
-const LoginPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-  const router = useRouter(); // Use the router from expo-router
-
-  const handleLogin = () => {
-    setIsLoggedIn(true); // Update state to indicate user is logged in
-    router.replace('/(tabs)/home'); // Replace the current route with home
-  };
-
-  // if (isLoggedIn) {
-  //   return <Redirect href="/(tabs)/home" />; // Redirect to home if logged in
-  // }
-
+const ForgotPasswordPage = () => {
   return (
     <View style={styles.container}>
       <View style={styles.placeholderIcon}>
@@ -28,26 +14,23 @@ const LoginPage = () => {
         </Svg>
       </View>
       
-      <Text style={styles.title}>Welcome Back</Text>
+      <Text style={styles.title}>Forgot Password</Text>
+      
+      <Text style={styles.instructions}>
+        Please enter your email address to receive instructions on resetting your password.
+      </Text>
       
       <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#FFFFFF" />
-      <TextInput style={styles.input} placeholder="Password" placeholderTextColor="#FFFFFF" secureTextEntry />
       
-      <TouchableOpacity style={styles.authButton} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Log In</Text>
+      <TouchableOpacity style={styles.authButton}>
+        <Text style={styles.buttonText}>Send Instructions</Text>
       </TouchableOpacity>
       
       <TouchableOpacity style={styles.switchAuth}>
-        <Link href="/(auth)/sign-up">
+        <Link href="/(auth)/log-in">
           <Text style={styles.switchAuthText}>
-            Don't have an account? <Text style={{ fontWeight: 'bold' }}>Sign Up</Text>
+            Remembered your password? <Text style={{ fontWeight: 'bold' }}>Log In</Text>
           </Text>
-        </Link>
-      </TouchableOpacity>
-      
-      <TouchableOpacity style={styles.forgotPassword}>
-      <Link href="/(auth)/forgot-pass">
-        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </Link>
       </TouchableOpacity>
     </View>
@@ -77,6 +60,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  instructions: {
+    fontSize: 16,
+    color: '#19191B',
+    textAlign: 'center',
+    marginBottom: 20,
+    paddingHorizontal: 20,
   },
   input: {
     width: width - 32,
@@ -111,15 +101,7 @@ const styles = StyleSheet.create({
     fontFamily: 'WorkSans-Medium',
     fontSize: 14,
   },
-  forgotPassword: {
-    position: 'absolute',
-    bottom: 20,
-  },
-  forgotPasswordText: {
-    fontFamily: 'WorkSans-Medium',
-    fontSize: 16,
-    color: '#000000',
-  },
 });
 
-export default LoginPage;
+export default ForgotPasswordPage;
+
