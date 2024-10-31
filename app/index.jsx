@@ -1,40 +1,51 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
+import { AuthProvider, useAuth } from './AuthContext';
 
-export default function App() {
+
+// function  AppContent() {
+//   const router = useRouter();
+//   const [isReady, setIsReady] = useState(false); // Track readiness
+
+//   useEffect(() => {
+//     setIsReady(true); // Mark as ready immediately after mounting
+//   }, []);
+
+//   useEffect(() => {
+//     if (isReady) {
+//       const { isLoggedIn } = useAuth(); 
+
+//       if (isLoggedIn) {
+//         router.replace('/(tabs)/home');
+//       } else {
+//         router.replace('/(auth)/log-in');
+//       }
+//     }
+//   }, [isReady, router]);
+
+//   return <StatusBar />;
+// }
+
+function AppContent() {
   const router = useRouter();
-  const [isReady, setIsReady] = useState(false); // State to track if the app is ready
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
-    // Set the app as ready after a short delay
-    const timer = setTimeout(() => {
-      setIsReady(true);
-    }, 0); // Adjust the delay as needed
-
-    return () => clearTimeout(timer); // Cleanup the timer
-  }, []);
-
-  useEffect(() => {
-    if (isReady) {
-      // Navigate to the login screen once the app is ready
+    if (isLoggedIn) {
+      router.replace('/(tabs)/home');
+    } else {
       router.replace('/(auth)/log-in');
     }
-  }, [isReady, router]);
+  }, [isLoggedIn, router]);
 
-  return (
-    <>
-      <StatusBar />
-    </>
-  );
+  return <StatusBar />;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+}

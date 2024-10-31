@@ -12,8 +12,9 @@ const LoginPage = () => {
   const router = useRouter(); // Use the router from expo-router
 
   const handleLogin = () => {
-    setIsLoggedIn(true); // Update state to indicate user is logged in
-    router.replace('/(tabs)/home'); // Replace the current route with home
+    // Mock login logic - replace with real login logic
+    setIsLoggedIn(true); 
+    router.replace('/(tabs)/home');
   };
 
   // if (isLoggedIn) {

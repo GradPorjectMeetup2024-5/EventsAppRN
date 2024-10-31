@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
-import { Slot, SplashScreen } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { SplashScreen } from 'expo-router';
 import { useFonts } from 'expo-font';
-
+import { Drawer } from "expo-router/drawer";
+import { useRouter } from 'expo-router';
+import { Slot } from 'expo-router'; // Import Slot
 
 SplashScreen.preventAutoHideAsync();
+
+const useAuth = () => {
+  // Replace with actual authentication check logic
+  return { isLoggedIn: false }; // Adjust based on your authentication state
+};
 
 const RootLayout = () => {
   const [fontsLoaded, error] = useFonts({
@@ -17,16 +24,31 @@ const RootLayout = () => {
     "Poppins-SemiBold": require("../assets/fonts/Poppins-SemiBold.ttf"),
     "Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
+  
+  const router = useRouter();
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     if (error) throw error;
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded, error]);
 
-  if (!fontsLoaded && !error) return null;
+  useEffect(() => {
+    // Navigate based on the login state
+    if (!fontsLoaded || error) return; // Ensure fonts are loaded and no error
 
+    if (!isLoggedIn) {
+      router.replace('/(auth)/log-in'); // Redirect to login if not authenticated
+    }
+  }, [isLoggedIn, fontsLoaded, error, router]);
+
+  if (!fontsLoaded) return null; // Prevent rendering before fonts are loaded
+
+  // Always render the Slot, allowing Expo Router to handle navigation
   return (
-      <Slot />
+    <Drawer>
+      <Slot /> {/* This Slot will render the screens */}
+    </Drawer>
   );
 };
 

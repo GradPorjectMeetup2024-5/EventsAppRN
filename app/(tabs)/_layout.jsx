@@ -1,41 +1,18 @@
-import { Tabs} from "expo-router";
-import { Image, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
-import { icons } from "../../constants";
-import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from "expo-router";
+import { Image, Text, View } from "react-native";
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { icons } from "../../constants";
 
-const TabIcon = ({ icon, color, name, focused }) => {
+const TabIcon = ({ icon, color, name }) => (
+    <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Image source={icon} resizeMode="contain" style={{ width: 24, height: 24, tintColor: color }} />
+        <Text style={{ color, fontSize: 12 }}>{name}</Text>
+    </View>
+);
+
+export default function TabsLayout() {
     return (
-        <View className="items-center justify-center gap-2">
-            <Image
-                source={icon}
-                resizeMode="contain"
-                tintColor={color}
-                className="w-6 h-6"
-            />
-            <Text
-                // className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
-                className={`text-xs`}
-                style={{ color: color }}
-            >
-                {name}
-            </Text>
-        </View>
-    )
-}
-
-const TabsLayout = ({ navigation }) => {
-    return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#D0D0D0'}}>
-            <View style={{ height: 50, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', backgroundColor: '#D0D0D0', paddingHorizontal: 15}}>
-                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Placeholder</Text>
-                <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                    <Ionicons name="menu" size={34} color="black" /> 
-                </TouchableOpacity>
-            </View>
-            
-
-            <Tabs
+        <Tabs
                 screenOptions={{
                     tabBarShowLabel: false,
                     tabBarActiveTintColor: '#DC143C', // Crimson Red: BADAL #FFA001
@@ -111,8 +88,5 @@ const TabsLayout = ({ navigation }) => {
                     }}
                 />
             </Tabs>
-    </SafeAreaView>
-    )
+    );
 }
-
-export default TabsLayout;
