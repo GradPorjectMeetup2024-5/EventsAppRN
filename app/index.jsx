@@ -5,10 +5,6 @@ import React, { useEffect, useState } from 'react';
 
 // This is the main App component
 export default function App() {
-<<<<<<< HEAD
-  // The App component currently renders the LogIn component
-  return <LogIn />;
-=======
   const router = useRouter();
   const [isReady, setIsReady] = useState(false); // State to track if the app is ready
 
@@ -33,7 +29,6 @@ export default function App() {
       <StatusBar />
     </>
   );
->>>>>>> e29b26a59c15791155c6e781a96e70d43379faa6
 }
 
 // Styles for the App component
